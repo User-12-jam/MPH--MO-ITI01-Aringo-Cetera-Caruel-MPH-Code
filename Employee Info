@@ -1,0 +1,93 @@
+package motorph.project;
+
+import java.time.Duration;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
+public class EmployeeInformation {
+
+    // Employee attributes
+    int employeeNumber;
+    String lastName, firstName, birthday, address, phoneNumber, sssNumber, philHealthNumber, tinNumber,
+            pagIbigNumber, status, position, immediateSupervisor, riceSubsidy, phoneAllowance, clothingAllowance;
+    double totalAllowance, basicSalaryMonthly, basicSalarySemiMonthlyRate, hourlyRate, totalHoursWorked, overtimeHours,
+            grossPay, pagIbig, philHealth, sss, tax, totalDeduction, netPay;
+
+    // Method to display employee details
+    public void checkStatus() {
+        System.out.println("Employee Number: " + employeeNumber);
+        System.out.println("Last Name: " + lastName);
+        System.out.println("First Name: " + firstName);
+        System.out.println("Birthday: " + birthday);
+        System.out.println("Address: " + address);
+        System.out.println("Phone Number: " + phoneNumber);
+        System.out.println("SSS Number: " + sssNumber);
+        System.out.println("PhilHealth Number: " + philHealthNumber);
+        System.out.println("TIN Number: " + tinNumber);
+        System.out.println("PagIbig Number: " + pagIbigNumber);
+        System.out.println("Status: " + status);
+        System.out.println("Position: " + position);
+        System.out.println("Immediate Supervisor: " + immediateSupervisor);
+        System.out.println("===============================================");
+        System.out.println("Rice Subsidy: " + riceSubsidy);
+        System.out.println("Phone Allowance: " + phoneAllowance);
+        System.out.println("Clothing Allowance: " + clothingAllowance);
+        System.out.println("Total Allowance: " + totalAllowance);
+        System.out.println("===============================================");
+        System.out.println("Basic Salary Monthly: " + basicSalaryMonthly);
+        System.out.println("Basic Salary Semi-Monthly Rate: " + basicSalarySemiMonthlyRate);
+    }
+
+    // Method to calculate and display work hours, overtime, and gross pay
+    public void calculateHoursAndPay(String startTimeStr, String endTimeStr) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        LocalTime startTime = LocalTime.parse(startTimeStr, formatter);
+        LocalTime endTime = LocalTime.parse(endTimeStr, formatter);
+
+        // Calculate total work hours
+        Duration duration = Duration.between(startTime, endTime);
+        long hours = duration.toHours();
+        long minutes = duration.toMinutes() % 60;
+
+        totalHoursWorked = hours + (minutes / 60.0);
+        overtimeHours = Math.max(totalHoursWorked - 8, 0);
+        double regularHours = Math.min(totalHoursWorked, 8);
+
+        // Calculate gross pay (assuming a fixed hourly rate and overtime rate)
+        double overtimeRate = hourlyRate * 1.5;
+        grossPay = (regularHours * hourlyRate) + (overtimeHours * overtimeRate);
+
+        System.out.println("Total Work Hours: " + hours + " hours and " + minutes + " minutes");
+        System.out.printf("Total Hours (Decimal): %.2f hours\n", totalHoursWorked);
+        System.out.printf("Overtime Hours: %.2f hours\n", overtimeHours);
+        System.out.printf("Gross Pay: $%.2f\n", grossPay);
+    }
+
+    // Method to calculate and display deductions
+    public void calculateDeductions() {
+        totalDeduction = sss + philHealth + pagIbig;
+        System.out.printf("Total Deduction: %.2f\n", totalDeduction);
+    }
+
+    // Method to calculate tax based on gross pay
+    public void calculateTax() {
+        if (grossPay < 10000) {
+            tax = 0;
+            System.out.println("No Tax");
+        } else if (grossPay <= 20000) {
+            tax = grossPay * 0.25;
+            System.out.println("Tax Deduction: " + tax);
+        } else {
+            tax = grossPay * 0.35;
+            System.out.println("Tax Deduction: " + tax);
+        }
+    }
+
+    // Method to calculate and display net pay
+    public void calculateNetPay() {
+        netPay = grossPay - (totalDeduction + tax);
+        System.out.printf("Net Pay: $%.2f\n", netPay);
+   
+        }
+    
+    }
