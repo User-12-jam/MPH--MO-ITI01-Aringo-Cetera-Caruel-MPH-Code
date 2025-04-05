@@ -1,0 +1,47 @@
+package motorph.project;
+
+
+public class EmployeeInfowithPayroll extends EmployeeInformation {
+
+    public static void main(String[] args) {
+        // Create instance of EmployeeInformation
+        EmployeeInformation employee = new EmployeeInformation();
+        
+        // Assign employee details
+        employee.employeeNumber = 10002;
+        employee.lastName = "Lim";
+        employee.firstName = "Antonio";
+        employee.birthday = "June 16, 1998";
+        employee.address = "San Antonio De Padua 2, Block 1 Lot 8 and 2, Dasmarinas, Cavite";
+        employee.phoneNumber = "171-867-411";
+        employee.sssNumber = "52-2061274-9";
+        employee.philHealthNumber = "331735646338";
+        employee.tinNumber = "683-102-776-000";
+        employee.pagIbigNumber = "663904995411";
+        employee.status = "Regular";
+        employee.position = "Chief Operating Officer";
+        employee.immediateSupervisor = "Manuel Garcia III";
+        employee.riceSubsidy = "1500";
+        employee.phoneAllowance = "2000";
+        employee.clothingAllowance = "1000";
+        employee.totalAllowance = 4500;
+        employee.basicSalaryMonthly = 60000;
+        employee.basicSalarySemiMonthlyRate = 30000;
+        employee.hourlyRate = 357.14;
+        
+        // Display employee information
+        employee.checkStatus();
+        
+        // Calculate work hours, overtime, and gross pay
+        employee.calculateHoursAndPay("10:35", "19:44");
+        
+        // Calculate deductions (SSS, PhilHealth, PagIbig)
+        employee.calculateDeductions();
+        
+        // Calculate tax
+        employee.calculateTax();
+        
+        // Calculate net pay
+        employee.calculateNetPay();
+    }
+}
