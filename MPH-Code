@@ -1,0 +1,38 @@
+package motorph.project;
+
+import java.util.Scanner;
+
+public class MPHCode {
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        // Display menu and handle user input
+        System.out.println("===============================================");
+        System.out.println("MOTOR PH");
+        System.out.println("===============================================");
+        System.out.println("EMPLOYEE INFORMATION PRESS 1");
+        System.out.println("===============================================");
+        System.out.print("Please choose number: ");
+        String option = input.nextLine();
+
+        // Process based on the selected option
+        if (option.equals("1")) {
+            // Instantiate EmployeeInfowithPayroll and set data
+            EmployeeInfowithPayroll employee = new EmployeeInfowithPayroll();
+            employee.employeeNumber = 10002;
+            // Assign other attributes as needed...
+
+            // Display employee details
+            employee.checkStatus();
+            // Calculate payroll details
+            employee.calculateHoursAndPay("10:35", "19:44");
+            employee.calculateDeductions();
+            employee.calculateTax();
+            employee.calculateNetPay();
+        }
+
+        // Close the scanner
+        input.close();
+    }
+}
